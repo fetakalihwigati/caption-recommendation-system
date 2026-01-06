@@ -549,17 +549,35 @@ from logic.scoring import compute_quality_score
 # =====================
 # LOAD MODEL & DATA
 # =====================
+from sklearn.feature_extraction.text import TfidfVectorizer
+
 @st.cache_resource
 def load_assets():
     df = pd.read_parquet("data/captions_final.parquet")
 
-    vectorizer = joblib.load("models/tfidf_vectorizer.pkl")
-    tfidf_matrix = joblib.load("models/tfidf_matrix.pkl")
+    # FIT TF-IDF SAAT RUNTIME
+    vectorizer = TfidfVectorizer(
+        stop_words="english",
+        max_features=5000
+    )
 
-    # pastikan kolom quality_score tersedia
+    tfidf_matrix = vectorizer.fit_transform(df["caption_clean"])
+
     df = compute_quality_score(df)
 
     return df, vectorizer, tfidf_matrix
+
+#@st.cache_resource
+#def load_assets():
+ #   df = pd.read_parquet("data/captions_final.parquet")
+#
+ #   vectorizer = joblib.load("models/tfidf_vectorizer.pkl")
+  #  tfidf_matrix = joblib.load("models/tfidf_matrix.pkl")
+
+    # pastikan kolom quality_score tersedia
+   # df = compute_quality_score(df)
+
+    #return df, vectorizer, tfidf_matrix
 
 
 # =====================

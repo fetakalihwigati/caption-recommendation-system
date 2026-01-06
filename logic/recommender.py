@@ -561,7 +561,7 @@ def load_assets():
         max_features=5000
     )
 
-    tfidf_matrix = vectorizer.fit_transform(df["caption_clean"])
+    tfidf_matrix = vectorizer.fit_transform(df["caption"])
 
     df = compute_quality_score(df)
 

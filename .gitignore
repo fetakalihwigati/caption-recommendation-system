@@ -6,8 +6,6 @@ venv/
 __pycache__/
 *.pyc
 
-# Model files (besar, jangan upload ke GitHub)
-models/tfidf_matrix.pkl
-
 # Mac system files
 .DS_Store
+

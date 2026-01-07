@@ -802,12 +802,13 @@ if st.button("🔍 Rekomendasikan Caption"):
     else:
         with st.spinner("Mencari caption terbaik..."):
             result = recommend_caption(
-                input_caption=caption_input,
-                top_k=top_k,
-                brand=brand_option,
-                platform=platform_option,
-                meta_theme=meta_theme_option
+                        input_caption=caption_input,
+                        top_k=top_k,
+                        brand=brand_option,
+                        platform=platform_option,
+                        meta_themes=None if meta_theme_option == "Semua" else [meta_theme_option]
             )
+
 
         st.subheader("📌 Hasil Rekomendasi")
 

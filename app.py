@@ -696,16 +696,15 @@ st.divider()
 st.markdown("""
 ### 🚗 Tentang Sistem Rekomendasi Caption Konten Media Sosial 
 
-Sistem ini akan merekomendasikan **caption digital marketing** yang paling relevan berdasarkan kemiripan 
-**teks caption input** dan **karakteristik konten sebelumnya** dengan menggunakan pendekatan 
-**Content-Based Filtering** dengan **TF-IDF** dan **Cosine Similarity**, serta mempertimbangkan 
-**kualitas konten** melalui **quality score** berbasis engagement untuk menghasilkan rekomendasi yang 
-relevan dan memiliki performa yang baik.
+Sistem ini merupakan **sistem rekomendasi caption digital marketing** yang dirancang untuk menghasilkan rekomendasi 
+caption yang paling relevan berdasarkan **kemiripan semantik teks caption input** dengan **konten caption sebelumnya.** 
+Pendekatan yang digunakan adalah **Content-Based Filtering** dengan representasi teks menggunakan **Word2Vec embedding** 
+dan pengukuran kemiripan menggunakan **Cosine Similarity.** Selain relevansi konten, sistem juga mempertimbangkan 
+**performa engagement** untuk menghasilkan rekomendasi caption yang tidak hanya relevan, tetapi juga berpotensi memiliki 
+**kinerja yang baik** di media sosial.
 
-Sistem rekomendasi ini dirancang secara khusus untuk menyajikan **konten caption media sosial dalam bidang 
-otomotif** yang digunakan pada kebutuhan **digital marketing.**
-Konten yang direkomendasikan mencakup caption untuk **media sosial berbagai brand mobil, promosi produk 
-kendaraan, kampanye event otomotif (seperti auto show)**, serta aktivitas **branding produk dan brand otomotif.**
+Rekomendasi mencakup berbagai kebutuhan **digital marketing otomotif,** seperti **promosi produk mobil, kampanye event, 
+branding,** dan **aktivitas komunitas** di berbagai platform media sosial.
 
 """)
 
@@ -713,42 +712,38 @@ st.markdown("""
 ### ⚙️ Metodologi Sistem
 
 1. Caption input diproses melalui tahapan *text preprocessing*.
-2. Teks direpresentasikan dalam bentuk vektor menggunakan **TF-IDF**.
-3. Kemiripan dihitung menggunakan **Cosine Similarity**.
+2. Teks direpresentasikan dalam bentuk vektor menggunakan **Word2Vec**.
+3. Kemiripan antar caption dihitung menggunakan **Cosine Similarity**.
 4. Skor akhir dihitung dari kombinasi:
    - *Similarity Score*
-   - *Quality Score*.
-5. Hasil diurutkan berdasarkan **Final Score** tertinggi.
+   - *Engagement-based Quality Score*.
+5. Hasil rekomendasi diurutkan berdasarkan **Final Score** tertinggi.
 """)
 
 st.markdown("""
 ### 📖 Cara Menggunakan Sistem Rekomendasi Caption
 
-1. **Pengguna memasukkan ide caption media sosial bertema otomotif mobil**
-            
-   Pengguna menuliskan teks caption bertema otomotif mobil yang ingin dikembangkan atau dicari rekomendasinya oleh sistem.  
+1. **Masukkan ide caption media sosial bertema otomotif**
+   
+   Pengguna menuliskan teks caption yang ingin dikembangkan atau dicari rekomendasinya oleh sistem.  
    Contoh:
    - *Datang segera ke booth Suzuki dan ikuti test drive gratis Suzuki Grand Vitara.*
    - *Teman Wuling, yuk ikutan #WulingQuiz dan dapatkan e-wallet bagi kamu yang beruntung!*
    - *Rasakan kenyamanan berkendara mobil listrik dengan fitur yang lebih modern.*
 
-            
-            
-2. **Pengguna mengatur parameter rekomendasi**
-            
-   Pengguna dapat menyesuaikan pengaturan sistem sesuai kebutuhan, meliputi:
-   - **Jumlah** caption **rekomendasi** yang diinginkan (3–10 caption)
+2. **Atur parameter rekomendasi**
+   
+   Pengguna dapat menyesuaikan pengaturan sistem, meliputi:
+   - Jumlah caption rekomendasi (3–10)
    - Filter **brand**
-   - Filter **platform** (Instagram, Facebook, TikTok, atau YouTube)
+   - Filter **platform**
+   - Filter **meta theme**
 
-            
-
-3. **Sistem menjalankan proses rekomendasi**
-            
-   Sistem akan memproses caption input dan menghasilkan rekomendasi caption yang paling relevan  
-   berdasarkan kemiripan teks dan kualitas konten.
+3. **Jalankan proses rekomendasi**
+   
+   Sistem akan memproses caption input dan menampilkan rekomendasi caption yang paling relevan  
+   berdasarkan **kemiripan teks** dan **kualitas konten (engagement)**.
 """)
-
 
 st.divider()
 

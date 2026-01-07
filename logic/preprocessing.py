@@ -79,50 +79,99 @@
 
 # logic/preprocessing.py
 
+# import re
+# import string
+
+# from Sastrawi.Stemmer.StemmerFactory import StemmerFactory
+# from Sastrawi.StopWordRemover.StopWordRemoverFactory import StopWordRemoverFactory
+
+
+# # =====================
+# # INIT NLP TOOLS (GLOBAL)
+# # =====================
+# stemmer_id = StemmerFactory().create_stemmer()
+# stopwords_id = set(
+#     StopWordRemoverFactory().get_stop_words()
+# )
+
+
+# # =====================
+# # TEXT PREPROCESSING
+# # =====================
+# def preprocess_text(text: str) -> str:
+#     if not isinstance(text, str):
+#         return ""
+
+#     # lowercase
+#     text = text.lower()
+
+#     # remove url
+#     text = re.sub(r"http\S+", "", text)
+
+#     # remove punctuation
+#     text = text.translate(str.maketrans("", "", string.punctuation))
+
+#     # tokenize
+#     words = text.split()
+
+#     # stopword removal + stemming
+#     processed_words = [
+#         stemmer_id.stem(word)
+#         for word in words
+#         if word not in stopwords_id
+#     ]
+
+#     return " ".join(processed_words)
+
+
+# def clean_text(text: str) -> str:
+#     return preprocess_text(text)
+
+# logic/preprocessing.py
+
 import re
 import string
 
-from Sastrawi.Stemmer.StemmerFactory import StemmerFactory
-from Sastrawi.StopWordRemover.StopWordRemoverFactory import StopWordRemoverFactory
-
 
 # =====================
-# INIT NLP TOOLS (GLOBAL)
-# =====================
-stemmer_id = StemmerFactory().create_stemmer()
-stopwords_id = set(
-    StopWordRemoverFactory().get_stop_words()
-)
-
-
-# =====================
-# TEXT PREPROCESSING
+# BASIC TEXT CLEANING
 # =====================
 def preprocess_text(text: str) -> str:
+    """
+    Light preprocessing for Word2Vec-based system.
+    - lowercase
+    - remove URL
+    - remove punctuation
+    - normalize whitespace
+    """
+
     if not isinstance(text, str):
         return ""
 
     # lowercase
     text = text.lower()
 
-    # remove url
-    text = re.sub(r"http\S+", "", text)
+    # remove URL
+    text = re.sub(r"http\S+|www\S+", "", text)
 
     # remove punctuation
-    text = text.translate(str.maketrans("", "", string.punctuation))
+    text = text.translate(
+        str.maketrans("", "", string.punctuation)
+    )
 
-    # tokenize
-    words = text.split()
+    # remove extra whitespace
+    text = re.sub(r"\s+", " ", text).strip()
 
-    # stopword removal + stemming
-    processed_words = [
-        stemmer_id.stem(word)
-        for word in words
-        if word not in stopwords_id
-    ]
-
-    return " ".join(processed_words)
+    return text
 
 
+# =====================
+# ALIAS (compatibility)
+# =====================
 def clean_text(text: str) -> str:
+    """
+    Alias for preprocess_text
+    (to keep compatibility with old code)
+    """
     return preprocess_text(text)
+
